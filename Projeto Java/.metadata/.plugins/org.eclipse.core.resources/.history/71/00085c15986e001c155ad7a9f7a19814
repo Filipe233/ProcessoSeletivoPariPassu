@@ -1,0 +1,16 @@
+package com.controlesenhas.repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.controlesenhas.model.Senha;
+
+public interface SenhaRepository extends JpaRepository<Senha, Long> {
+
+
+	@Query("SELECT MAX(s.sen_numero) as sen_numero from senha s where s.sen_utilizada = false and s.sen_preferencial = :preferencial order by s.sen_numero asc")
+	public Senha BuscarUltimaSenha(boolean preferencial);
+
+
+}

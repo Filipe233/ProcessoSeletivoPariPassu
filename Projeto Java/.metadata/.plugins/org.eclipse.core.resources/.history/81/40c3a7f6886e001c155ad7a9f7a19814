@@ -1,0 +1,8 @@
+package com.controlesenhas.model;
+
+import javax.persistence.Entity;
+
+@Entity(name = "senha")
+public class Senhas {
+	
+}

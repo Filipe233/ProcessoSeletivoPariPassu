@@ -1,0 +1,17 @@
+package com.controlesenhas.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.controlesenhas.model.Senha;
+
+public interface SenhaRepository extends JpaRepository<Senha, Long> {
+
+	@Query("INSERT INTO public.senha( sen_numero, sen_preferencial, sen_senha, sen_utilizada)"
+			+ "	VALUES ( :senha, :preferencial, 'N:senha', false)")
+	public Senha AdicionarSenha(long senha, boolean preferencial);
+
+	@Query("SELECT s from senha s where s.sen_utilizada = false and s.sen_preferencial = :preferencial order by s.sen_numero asc limit 1")
+	public Senha buscarUltimaSenha(boolean preferencial);
+
+}

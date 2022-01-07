@@ -1,0 +1,17 @@
+package com.controlesenhas.appservice;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.controlesenhas.repository.UsuarioRepository;
+
+public class UsuarioAppService {
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	public boolean verificarLogin(String usuario, String senha) {
+		usuarioRepository.findBy()
+		return false;
+	}
+
+}

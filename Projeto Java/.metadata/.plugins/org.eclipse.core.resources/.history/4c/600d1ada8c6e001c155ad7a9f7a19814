@@ -1,0 +1,9 @@
+package com.controlesenhas.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.controlesenhas.model.Senha;
+
+public interface SenhaRepository extends JpaRepository<Senha, Long>{
+
+}

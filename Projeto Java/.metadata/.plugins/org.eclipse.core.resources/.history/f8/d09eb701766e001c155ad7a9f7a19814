@@ -1,0 +1,9 @@
+package com.controlesenhas.appservice;
+
+public class LoginAppService {
+
+	public boolean verificarLogin(String usuario, String senha) {
+		return false;
+	}
+
+}

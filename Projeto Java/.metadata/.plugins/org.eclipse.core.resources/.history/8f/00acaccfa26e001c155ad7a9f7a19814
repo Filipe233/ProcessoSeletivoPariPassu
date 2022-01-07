@@ -1,0 +1,42 @@
+package com.controlesenhas.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.controlesenhas.appservice.SenhaAppService;
+import com.controlesenhas.model.Senha;
+import com.controlesenhas.repository.SenhaRepository;
+
+@RestController
+@RequestMapping("/Senha")
+public class SenhaController {
+
+	@Autowired
+	private SenhaRepository senhaRepository;
+
+	@Autowired
+	private SenhaAppService senhaService;
+
+	@GetMapping("/BuscarUltimaSenha")
+	public Senha BuscarUltimaSenha(boolean preferencial) {
+		List<Senha> senha = senhaRepository.BuscarUltimaSenha(preferencial);
+		return senha.get(0);
+	}
+
+	@PostMapping("/ResgatarSenha")
+	public Senha RegastarSenha() {
+		Senha senha = senhaService.ResgatarSenha();
+		return senha;
+	}
+
+	@PostMapping("/IncluirSenha")
+	public Senha IncluirSenha(boolean preferencial) {
+		Senha senha = senhaService.AcrescentarSenha(preferencial);
+		return senha;
+	}
+}

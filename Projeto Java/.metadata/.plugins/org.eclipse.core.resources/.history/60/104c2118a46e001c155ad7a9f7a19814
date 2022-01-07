@@ -1,0 +1,5 @@
+package com.controlesenhas.appservice;
+
+public class SenhaChamadaAppService {
+
+}

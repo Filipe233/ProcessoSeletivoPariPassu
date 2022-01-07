@@ -1,0 +1,5 @@
+package com.controlesenhas.webconfig;
+
+public class WebConfiguration {
+
+}

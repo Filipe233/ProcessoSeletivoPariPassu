@@ -1,0 +1,11 @@
+package com.controlesenhas.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+
+public interface SenhaChamada extends JpaRepository<SenhaChamadaRepository, Long> {
+
+	@Query("SELECT sc from senhachamada sc")
+	public SenhaChamadaRepository BuscarSenhaChamada();
+}

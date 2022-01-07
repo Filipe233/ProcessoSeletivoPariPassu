@@ -1,0 +1,17 @@
+package com.controlesenhas.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.controlesenhas.model.Senha;
+
+public interface SenhaRepository extends JpaRepository<Senha, Long> {
+
+	@Query("Insert into")
+	public Senha AdicionarSenhaPreferencial(long senha);
+
+	@Query("INSERT INTO public.senha( sen_numero, sen_preferencial, sen_senha, sen_utilizada)"
+			+ "	VALUES ( :senha, false, 'N:senha', false)")
+	public Senha AdicionarSenhaNormal(long senha);
+
+}

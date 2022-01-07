@@ -1,0 +1,5 @@
+package com.controlesenhas.repository;
+
+public interface SenhaRepository {
+
+}

@@ -1,0 +1,39 @@
+package com.controlesenhas.appservice;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.QPageRequest;
+import org.springframework.stereotype.Service;
+
+import com.controlesenhas.model.Senha;
+import com.controlesenhas.repository.SenhaRepository;
+
+@Service
+public class SenhaAppService {
+
+	@Autowired
+	private SenhaRepository senhaRepository;
+	private Pageable primeiroResultado = new QPageRequest(0, 1);
+
+	public Senha AcrescentarSenha(boolean preferencial) {
+		Senha senha = senhaRepository.BuscarUltimaSenha(preferencial,primeiroResultado).get(0);
+		Senha novaSenha = new Senha();
+		novaSenha.setSen_numero(senha.getSen_numero() + 1);
+		novaSenha.setSen_preferencial(preferencial);
+		novaSenha.setSen_senha(preferencial ? "P" : "N" + String.format("%04d", senha.getSen_numero()));
+		novaSenha.setSen_utilizada(false);
+		senha = senhaRepository.save(novaSenha);
+		return novaSenha;
+	}
+
+	public Senha ResgatarSenha() {
+		Senha senha = senhaRepository.BuscarUltimaSenha(true, primeiroResultado).get(0);
+		if (senha == null) {
+			senha = senhaRepository.BuscarUltimaSenha(false, primeiroResultado).get(0);
+		}
+		senha.setSen_utilizada(true);
+		senhaRepository.save(senha);
+		return senha;
+	}
+
+}

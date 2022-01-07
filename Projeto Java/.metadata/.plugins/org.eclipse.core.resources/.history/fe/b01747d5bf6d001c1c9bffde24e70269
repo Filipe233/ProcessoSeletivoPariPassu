@@ -1,0 +1,10 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/GerenciamentoSenhas
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+
+spring.jpa.database=POSTGRESQL
+spring.datasource.platform=postgres
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.database.driverClassName=org.postgresql.Driver
+server.port=8080

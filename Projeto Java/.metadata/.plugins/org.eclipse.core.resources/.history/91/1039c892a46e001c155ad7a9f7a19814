@@ -1,0 +1,44 @@
+package com.controlesenhas.appservice;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.controlesenhas.model.Senha;
+import com.controlesenhas.repository.SenhaRepository;
+
+@Service
+public class SenhaAppService {
+
+	@Autowired
+	private SenhaRepository senhaRepository;
+
+	public Senha AcrescentarSenha(boolean preferencial) {
+		List<Senha> listaSenhas = senhaRepository.BuscarUltimaSenha(preferencial);
+		Senha senha = new Senha();
+		long numeroAtual = 0;
+		if (listaSenhas.size() > 0) {
+			senha = listaSenhas.get(0);
+			numeroAtual = senha.getSen_numero();
+		} 
+		Senha novaSenha = new Senha();
+		novaSenha.setSen_numero(numeroAtual + 1);
+		novaSenha.setSen_preferencial(preferencial);
+		novaSenha.setSen_senha((preferencial ? "P" : "N") + String.format("%04d", novaSenha.getSen_numero()));
+		novaSenha.setSen_utilizada(false);
+		senha = senhaRepository.save(novaSenha);
+		return novaSenha;
+	}
+
+	public Senha ResgatarSenha() {
+		Senha senha = senhaRepository.BuscarPrimeiraSenha(true).get(0);
+		if (senha == null) {
+			senha = senhaRepository.BuscarPrimeiraSenha(false).get(0);
+		}
+		senha.setSen_utilizada(true);
+		senhaRepository.save(senha);
+		return senha;
+	}
+
+}

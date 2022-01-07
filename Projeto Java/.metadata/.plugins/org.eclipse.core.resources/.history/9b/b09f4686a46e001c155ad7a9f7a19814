@@ -1,0 +1,22 @@
+package com.controlesenhas.appservice;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.controlesenhas.model.SenhaChamada;
+import com.controlesenhas.repository.SenhaChamadaRepository;
+
+@Service
+public class SenhaChamadaAppService {
+
+	@Autowired
+	private SenhaChamadaRepository senhaChamadaRepository;
+
+	public SenhaChamada AlterarSenhaChamada(String senha) {
+		SenhaChamada senhaChamada = senhaChamadaRepository.BuscarSenhaChamada();
+		senhaChamada.setSenha(senha);
+		senhaChamadaRepository.save(senhaChamada);
+		return senhaChamada;
+	}
+
+}
