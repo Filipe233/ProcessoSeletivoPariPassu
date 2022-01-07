@@ -1,0 +1,27 @@
+Projete para o controle de senhas desenvolvido para o processo seletivo da PariPassu.
+
+Como iniciar:
+Back-End
+1-Abrir o projeto Java pela IDE desejada, no meu caso utilizei a IDE Eclipse.
+2-Configurar a URL do banco de dados no Caminho src/main/resources/aplication.properties (Não é necessario criar as tabelas pois o sistema faz isso de forma automatica).
+3-Abrir o terminal da ide e digitar mvc install para baixar as dependencias do projeto.
+4-Atualizar o projeto (Refresh).
+5-Executar o comando java -jar "Nome do arquivo".jar (Este arquivo cujo o nome será informado é o arquivo gerado dentro da pasta target, este por padrao deve ser ControleSenhas-Api-0.0.1-SNAPSHOT)
+6-Pronto o sistema já está rodando.
+
+Front-End
+1-Abrir o projeto ControleSenhasWeb localizado dendro da pasta react com a IDE Visual Studio Code ou localizar o mesmo via CMD.
+2-Executar o comando npm install no diretório do projeto.
+3-Após instalar todas dependecias executar o comando npm start.
+3-Com todas estas etapas concluídas será possivel executar o projeto de Gerenciamento de senhas.
+
+Como Utilizar:
+Ao visualizar a tela será possivel verificar a existencia de 3 botões e um input de texto, estes botões possuem cada um uma função distinta, estas são: 
+*Botão "Retirar Senha" localizado logo abaixo do label "Senhas Preferênciais" executa uma função que gera uma senha preferêncial para o usuario-cliente. 
+*Botão "Retirar Senha" localizado abaixo do label "Senhas Normais" executa uma função que retorna uma senha normal para o usuario-cliente.
+*Botão "Abrir Configurações Gerenciais" retorna para a tela uma caixa(modal) com algumas opções executaveis pelo usuario-gerente. 
+Na modal "Controle Gerencial" é possivel verificar a existencia de 2 botões, que são eles: "Chamar Senha" e "Resetar Senha".
+*O Botão "Chamar Senha" é reponsavel por efetuar a chamada da proxima senha dos usuarios-clientes, esta respeita o critério de senhas preferencias serem chamadas antes de senhas 
+normais.
+*O Botão "Resetar Senhas" é responsavel por zerar o número de senhas fazendo com que as mesmas sejam excluídas, podendo assim ser retiradas novas senhas iniciadas do numero 
+zero em diante.
